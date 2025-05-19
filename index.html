@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- question 1 -->
+    <h1>Question 1</h1>
+    <p>Write a program that takes a string as input and prints the string in reverse order.</p>
+    <textarea id="inputString" rows="4" cols="50"></textarea><br>
+    <button onclick="reverseString()">Reverse String</button>
+    <p id="output"></p>
+
+    <script>
+        function reverseString() {
+            const input = document.getElementById('inputString').value;
+            const reversed = input.split('').reverse().join('');
+            document.getElementById('output').innerText = reversed;
+        }
+    </script>
+
+    <!-- question 2 -->
+    <h1>Question 2</h1>
+    <p>Write a program that takes a number as input and checks if it is prime or not.</p>
+    <input type="number" id="inputNumber"><br>
+    <button onclick="checkPrime()">Check Prime</button>
+    <p id="primeOutput"></p>
+    <script>
+        function checkPrime() {
+            const value = document.getElementById('inputNumber').value;
+            const num = parseInt(value);
+            let isPrime = true;
+
+            if (isNaN(num)) {
+                document.getElementById('primeOutput').innerText = "Please enter a valid number.";
+                return;
+            }
+
+            if (num <= 1) {
+                isPrime = false;
+            } else {
+                for (let i = 2; i <= Math.sqrt(num); i++) {
+                    if (num % i === 0) {
+                        isPrime = false;
+                        break;
+                    }
+                }
+            }
+
+            document.getElementById('primeOutput').innerText = isPrime ? `${num} is a prime number.` : `${num} is not a prime number.`;
+        }
+    </script>
+
+    <!-- question 3 -->
+    <h1>Question 3</h1>
+    <p>Write a program that takes a list of numbers as input and returns the sum of all even numbers in the list.</p>
+    <textarea id="inputNumbers" rows="4" cols="50"></textarea><br>
+    <button onclick="sumEvenNumbers()">Sum Even Numbers</button>
+    <p id="evenOutput"></p>
+
+    <script>
+        function sumEvenNumbers() {
+            const input = document.getElementById('inputNumbers').value;
+            const numbers = input.split(',').map(num => parseInt(num.trim()));
+            const sum = numbers.filter(num => num % 2 === 0).reduce((acc, num) => acc + num, 0);
+            document.getElementById('evenOutput').innerText = `Sum of even numbers: ${sum}`;
+        }
+    </script>
+    <!-- question 3 -->
+
+    <h4>part 2</h4>
+    <input type="number" id="numberInput" placeholder="Enter a number" />
+<button onclick="printPrimes()">Print Prime Numbers</button>
+<p id="primeListOutput"></p>
+
+<script>
+  function isPrime(num) {
+    if (num <= 1) return false;
+    if (num === 2) return true;
+    for (let i = 2; i <= Math.sqrt(num); i++) {
+      if (num % i === 0) return false;
+    }
+    return true;
+  }
+
+  function printPrimes() {
+    const input = document.getElementById("numberInput");
+    const output = document.getElementById("primeListOutput");
+    const maxNum = parseInt(input.value);
+
+    if (isNaN(maxNum) || maxNum < 2) {
+      output.textContent = "Please enter a number ≥ 2.";
+      return;
+    }
+
+    const primes = [];
+    for (let i = 2; i <= maxNum; i++) {
+      if (isPrime(i)) primes.push(i);
+    }
+
+    output.textContent = primes.join(", ");
+  }
+</script>
+
+    
+
+    <!-- question 4 -->
+    <h1>Question 4</h1>
+    <p>Write a program that takes a string as input and counts the number of vowels in the string.</p>
+    <textarea id="inputVowels" rows="4" cols="50"></textarea><br>
+    <button onclick="countVowels()">Count Vowels</button>
+    <p id="vowelOutput"></p>
+
+    <script>
+        function countVowels() {
+            const input = document.getElementById('inputVowels').value.toLowerCase();
+            // Regular expression to match vowels
+            const vowels = input.match(/[aeiou]/gi);
+            const count = vowels ? vowels.length : 0;
+            document.getElementById('vowelOutput').innerText = `Number of vowels: ${count}`;
+        }
+    </script>
+
+    <!-- question 5 -->
+    <h1>Question 5</h1>
+    <p>Write a program that takes a list of strings as input and returns the longest string in the list.</p>
+    <textarea id="inputStrings" rows="4" cols="50"></textarea><br>
+    <button onclick="findLongestString()">Find Longest String</button>
+    <p id="longestOutput"></p>
+    <script>
+        function findLongestString() {
+            const input = document.getElementById('inputStrings').value;
+            const strings = input.split(',').map(str => str.trim());
+            const longest = strings.reduce((a, b) => a.length > b.length ? a : b, '');
+            document.getElementById('longestOutput').innerText = `Longest string: ${longest}`;
+        }
+    </script>
+
+    <!-- question 6 -->
+    <h1>Question 6</h1>
+    <p>Write a program that takes a number as input and returns the factorial of that number.</p>
+    <input type="number" id="inputFactorial"><br>
+    <button onclick="calculateFactorial()">Calculate Factorial</button>
+    <p id="factorialOutput"></p>
+    <script>
+            function calculateFactorial() {
+                const value = document.getElementById('inputFactorial').value;
+                const num = parseInt(value);
+                if (isNaN(num) || num < 0) {
+                    document.getElementById('factorialOutput').innerText = "Please enter a valid non-negative number.";
+                    return;
+                }
+                let factorial = 1;
+                for (let i = 1; i <= num; i++) {
+                    factorial *= i;
+                }
+                document.getElementById('factorialOutput').innerText = `Factorial of ${num} is ${factorial}.`;
+                document.getElementById('inputFactorial').value = '';
+            }
+        </script>
+
+    <!-- question 7 -->
+    <h1>Question 7</h1>
+    <p>Write a program that takes a string as input and checks if it is a palindrome or not.</p>
+    <textarea id="inputPalindrome" rows="4" cols="50"></textarea><br>
+    <button onclick="checkPalindrome()">Check Palindrome</button>
+    <p id="palindromeOutput"></p>
+
+    <script>
+        function checkPalindrome() {
+            const input = document.getElementById('inputPalindrome').value;
+            const cleaned = input.replace(/[^a-z0-9]/gi, '').toLowerCase();
+            const reversed = cleaned.split('').reverse().join('');
+            const isPalindrome = cleaned === reversed;
+            document.getElementById('palindromeOutput').innerText = isPalindrome ? `"${input}" is a palindrome.` : `"${input}" is not a palindrome.`;
+        }
+    </script>
+
+    <!-- question 8 -->
+    <h1>Question 8</h1>
+    <p>Write a program that takes a list of numbers as input and returns the maximum number in the list.</p>
+    <textarea id="inputMax" rows="4" cols="50"></textarea><br>
+    <button onclick="findMaxNumber()">Find Max Number</button>
+    <p id="maxOutput"></p>
+    <script>
+        function findMaxNumber() {
+            const input = document.getElementById('inputMax').value;
+            const numbers = input.split(',').map(num => parseInt(num.trim()));
+            const max = Math.max(...numbers);
+            document.getElementById('maxOutput').innerText = `Maximum number: ${max}`;
+        }
+    </script>
+
+    <!-- question 9 -->
+    <h1>Question 9</h1>
+    <p>Write a program that takes a string as input and counts the number of consonants in the string.</p>
+    <textarea id="inputConsonants" rows="4" cols="50"></textarea><br>
+    <button onclick="countConsonants()">Count Consonants</button>
+    <p id="consonantOutput"></p>
+    <script>
+        function countConsonants() {
+            const input = document.getElementById('inputConsonants').value.toLowerCase();
+            // Regular expression to match consonants
+            const consonants = input.match(/[^aeiou\s]/gi);
+            const count = consonants ? consonants.length : 0;
+            document.getElementById('consonantOutput').innerText = `Number of consonants: ${count}`;
+        }
+    </script>
+
+    <!-- question 10 -->
+    <h1>Question 10</h1>
+    <p>Write a program that takes a list of numbers as input and returns the average of all numbers in the list.</p>
+    <textarea id="inputAverage" rows="4" cols="50"></textarea><br>
+    <button onclick="calculateAverage()">Calculate Average</button>
+    <p id="averageOutput"></p>
+    <script>
+        function calculateAverage() {
+            const input = document.getElementById('inputAverage').value;
+            const numbers = input.split(',')
+                .map(num => parseFloat(num.trim()))
+                .filter(num => !isNaN(num));
+            if (numbers.length === 0) {
+                document.getElementById('averageOutput').innerText = "Please enter at least one valid number.";
+                return;
+            }
+            const sum = numbers.reduce((acc, num) => acc + num, 0);
+            const average = sum / numbers.length;
+            document.getElementById('averageOutput').innerText = `Average: ${average}`;
+        }
+    </script>
+
+    <!-- question 11 -->
+    <h1>Question 11</h1>
+    <p>Write a program that takes a sentance and find a repated letter</p>
+    <textarea id="inputRepeatedLetter" rows="4" cols="50"></textarea><br>
+    <button onclick="findRepeatedLetter()">Find Repeated Letter</button>
+    <p id="repeatedLetterOutput"></p>
+    <script>
+        function findRepeatedLetter() {
+            const input = document.getElementById('inputRepeatedLetter').value;
+            const letterMap = {};
+
+            for (let char of input) {
+                const lowerChar = char.toLowerCase();
+                if (/[a-z]/i.test(lowerChar)) { // Check if it's a letter
+                    if (letterMap[lowerChar]) {
+                        document.getElementById('repeatedLetterOutput').innerText = `First repeated letter: ${lowerChar}`;
+                        return;
+                    }
+                    letterMap[lowerChar] = 1;
+                }
+            }
+
+            document.getElementById('repeatedLetterOutput').innerText = "No repeated letters found.";
+        }
+    </script>
+
+    <!-- question 12 -->
+    <h1>Question 12</h1>
+    <p>Write a program that takes a list of numbers as input and returns the second largest number in the list.</p>
+    <textarea id="inputSecondLargest" rows="4" cols="50"></textarea><br>
+    <button onclick="findSecondLargestNumber()">Find Second Largest Number</button>
+    <p id="secondLargestOutput"></p>
+    <script>
+        function findSecondLargestNumber() {
+            const input = document.getElementById('inputSecondLargest').value;
+            const numbers = input.split(',').map(num => parseInt(num.trim()));
+            const uniqueNumbers = [...new Set(numbers)];
+            if (uniqueNumbers.length < 2) {
+                document.getElementById('secondLargestOutput').innerText = "Please enter at least two unique numbers.";
+                return;
+            }
+            uniqueNumbers.sort((a, b) => b - a);
+            const secondLargest = uniqueNumbers[1];
+            document.getElementById('secondLargestOutput').innerText = `Second largest number: ${secondLargest}`;
+        }
+    </script>
+    <hr>
+
+    <!-- question 13 -->
+    <h1>Question 13</h1>
+    <p>Write a program that takes a string as input and counts the number of words in the string.</p>
+    <textarea id="inputWordCount" rows="4" cols="50"></textarea><br>
+    <button onclick="countWords()">Count Words</button>
+    <p id="wordCountOutput"></p>
+    <script>
+        function countWords() {
+            const input = document.getElementById('inputWordCount').value;
+            const words = input.split(' ');
+            document.getElementById('wordCountOutput').innerText = `Number of words: ${words.length}`;
+        }
+    </script>
+
+    <!-- question 14 -->
+    <h1>Question 14</h1>
+    <p>Write a program that takes a string as input and count the number of letters in the string.</p>
+    <textarea id="inputLetterCount" rows="4" cols="50"></textarea><br>
+    <button onclick="countLetters()">Count Letters</button>
+    <p id="letterCountOutput"></p>
+    <script>
+        function countLetters() {
+            const input = document.getElementById('inputLetterCount').value;
+            const letters = input.replace(/[^a-zA-Z]/g, ''); // Remove non-letter characters
+            document.getElementById('letterCountOutput').innerText = `Number of letters: ${letters.length}`;
+        }
+    </script>
+
+    <!-- question 15 -->
+    <h1>Question 15</h1>
+    <p>Write a program that takes a list of numbers as input and returns the minimum number in the list.</p>
+    <textarea id="inputMin" rows="4" cols="50"></textarea><br>
+    <button onclick="findMinNumber()">Find Min Number</button>
+    <p id="minOutput"></p>
+    <script>
+        function findMinNumber() {
+            const input = document.getElementById('inputMin').value;
+            const numbers = input.split(',').map(num => parseInt(num.trim()));
+            const min = Math.min(...numbers);
+            document.getElementById('minOutput').innerText = `Minimum number: ${min}`;
+        }
+    </script>
+
+    <!-- question 16 -->
+    <h1>Question 16</h1>
+    <p>Write a program that takes a string as input and checks if it contains only digits.</p>
+    <textarea id="inputDigits" rows="4" cols="50"></textarea><br>
+    <button onclick="checkDigits()">Check Digits</button>
+    <p id="digitsOutput"></p>
+    <script>
+        function checkDigits() {
+            const input = document.getElementById('inputDigits').value;
+            const isDigits = /^[0-9]+$/.test(input);
+            document.getElementById('digitsOutput').innerText = isDigits ? `"${input}" contains only digits.` : `"${input}" does not contain only digits.`;
+        }
+    </script>
+
+    <!-- question 17 -->
+    <h1>Question 17</h1>
+    <p>Write a program that takes a string as input and fine the first non-repeated character in the string.</p>
+    <textarea id="inputNonRepeated" rows="4" cols="50"></textarea><br>
+    <button onclick="findFirstNonRepeated()">Find First Non-Repeated Character</button>
+    <p id="nonRepeatedOutput"></p>
+    <script>
+        function findFirstNonRepeated() {
+            const input = document.getElementById('inputNonRepeated').value;
+            const charCount = {};
+
+            for (let char of input) {
+                charCount[char] = (charCount[char] || 0) + 1;
+            }
+
+            for (let char of input) {
+                if (charCount[char] === 1) {
+                    document.getElementById('nonRepeatedOutput').innerText = `First non-repeated character: ${char}`;
+                    return;
+                }
+            }
+
+            document.getElementById('nonRepeatedOutput').innerText = "No non-repeated characters found.";
+        }
+    </script>
+
+    <!-- question 18 -->
+    <h1>Question 18</h1>
+    <p>Write a program that takes a print a pattern of stars.</p>
+    <input type="text" name="" id="patternInput">
+    <button onclick="printPattern()">Print Pattern</button>
+    <pre id="patternOutput"></pre>
+    <script>
+        function printPattern() {
+            const input = document.getElementById('patternInput').value;
+            const num = parseInt(input);
+            let pattern = '';
+            for (let i = 1; i <= num; i++) {
+                pattern += '*'.repeat(i) + '\n';
+            }
+            document.getElementById('patternOutput').innerText = pattern;
+        }
+    </script>
+
+    <!-- question 19 -->
+    <h1>Question 19</h1>
+    <p>Write a program that takes a string as input and checks if it is an anagram of another string.</p>
+    <textarea id="inputAnagram1" rows="4" cols="50"></textarea><br>
+    <textarea id="inputAnagram2" rows="4" cols="50"></textarea><br>
+    <button onclick="checkAnagram()">Check Anagram</button>
+    <p id="anagramOutput"></p>
+    <script>
+        function checkAnagram() {
+            const rawStr1 = document.getElementById('inputAnagram1').value;
+            const rawStr2 = document.getElementById('inputAnagram2').value;
+            const str1 = rawStr1.replace(/[^a-zA-Z]/g, '').toLowerCase();
+            const str2 = rawStr2.replace(/[^a-zA-Z]/g, '').toLowerCase();
+
+            if (!str1 || !str2) {
+                document.getElementById('anagramOutput').innerText = "Please enter both strings.";
+                return;
+            }
+
+            const sortedStr1 = str1.split('').sort().join('');
+            const sortedStr2 = str2.split('').sort().join('');
+
+            const isAnagram = sortedStr1 === sortedStr2;
+            document.getElementById('anagramOutput').innerText = isAnagram
+                ? `"${rawStr1}" and "${rawStr2}" are anagrams.`
+                : `"${rawStr1}" and "${rawStr2}" are not anagrams.`;
+        }
+    </script>
+
+    <!-- question 20 -->
+    <h1>Question 20</h1>
+    <p>Write a program that takes a number as input and returns the factorial of that number (using recursion).</p>
+    <input type="number" id="inputFactorial"><br>
+    <button onclick="calculateFactorial()">Calculate Factorial</button>
+    <p id="factorialOutput"></p>
+    <script>
+        function factorial(n) {
+            if (n === 0 || n === 1) return 1;
+            return n * factorial(n - 1);
+        }
+        function calculateFactorial() {
+            const value = document.getElementById('inputFactorial').value;
+            const num = parseInt(value);
+            if (isNaN(num) || num < 0) {
+                document.getElementById('factorialOutput').innerText = "Please enter a valid non-negative number.";
+                return;
+            }
+            const result = factorial(num);
+            document.getElementById('factorialOutput').innerText = `Factorial of ${num} is ${result}.`;
+            document.getElementById('inputFactorial').value = '';
+        }
+    </script>
+
+
+    <!-- question 21 -->
+    <h1>Question 21</h1>
+    <p>Write a program that takes a string as input and returns the string with each word capitalized (title case).</p>
+    <textarea id="inputTitleCase" rows="4" cols="50"></textarea><br>
+    <button onclick="toTitleCase()">Convert to Title Case</button>
+    <p id="titleCaseOutput"></p>
+    <script>
+        function toTitleCase() {
+            const input = document.getElementById('inputTitleCase').value;
+            const titleCased = input
+                .split(' ')
+                .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+                .join(' ');
+            document.getElementById('titleCaseOutput').innerText = `Title case: ${titleCased}`;
+        }
+    </script>
+
+    <!-- question 22 -->
+    <h1>Question 22</h1>
+    <p>Write a program that takes a string as input and returns the string with all vowels removed.</p>
+    <textarea id="inputRemoveVowels" rows="4" cols="50"></textarea><br>
+    <button onclick="removeVowels()">Remove Vowels</button>
+    <p id="removeVowelsOutput"></p>
+    <script>
+        function removeVowels() {
+            const input = document.getElementById('inputRemoveVowels').value;
+            const output = input.replace(/[aeiouAEIOU]/g, '');
+            document.getElementById('removeVowelsOutput').innerText = `Output: ${output}`;
+        }
+    </script>
+
+    <!-- question 23 -->
+    <h1>Question 23</h1>
+    <p>Write a program that takes a string as input and returns the string with all whitespace removed.</p>
+    <textarea id="inputRemoveWhitespace" rows="4" cols="50"></textarea><br>
+    <button onclick="removeWhitespace()">Remove Whitespace</button>
+    <p id="removeWhitespaceOutput"></p>
+    <script>
+        function removeWhitespace() {
+            const input = document.getElementById('inputRemoveWhitespace').value;
+            const output = input.replace(/\s/g, '');
+            document.getElementById('removeWhitespaceOutput').innerText = `Output: ${output}`;
+        }
+    </script>
+
+    <!-- question 24 -->
+    <h1>Question 24</h1>
+    <p>Write a program that takes a string as input and returns the string with all punctuation removed.</p>
+    <textarea id="inputRemovePunctuation" rows="4" cols="50"></textarea><br>
+    <button onclick="removePunctuation()">Remove Punctuation</button>
+    <p id="removePunctuationOutput"></p>
+    <script>
+        function removePunctuation() {
+            const input = document.getElementById('inputRemovePunctuation').value;
+            const output = input.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()?'""]/g, '');
+            document.getElementById('removePunctuationOutput').innerText = `Output: ${output}`;
+        }
+    </script>
+
+    <!-- question 25 -->
+    <h1>Question 25</h1>
+    <p>Write a program that takes a string as input and returns remove duplicate elements.</p>
+    <textarea id="inputRemoveDuplicates" rows="4" cols="50"></textarea><br>
+    <button onclick="removeDuplicates()">Remove Duplicates</button>
+    <p id="removeDuplicatesOutput"></p>
+    <script>
+        function removeDuplicates() {
+            const input = document.getElementById('inputRemoveDuplicates').value;
+            const output = [...new Set(input.split(''))].join('');
+            document.getElementById('removeDuplicatesOutput').innerText = `Output: ${output}`;
+        }
+    </script>
+
+    <!-- question 26 -->
+    <h1>Question 26</h1>
+    <p>Write a program that takes a string as input and returns remove duplicate elements in array.</p>
+    <textarea id="inputRemoveDuplicatesArray" rows="4" cols="50"></textarea><br>
+    <button onclick="removeDuplicatesArray()">Remove Duplicates</button>
+    <p id="removeDuplicatesArrayOutput"></p>
+    <script>
+        function removeDuplicatesArray() {
+            const input = document.getElementById('inputRemoveDuplicatesArray').value;
+            const output = [...new Set(input.split(','))].join(',');
+            document.getElementById('removeDuplicatesArrayOutput').innerText = `Output: ${output}`;
+        }
+    </script>
+
+    <!-- question 27 -->
+    <h1>Question 27</h1>
+    <p>Write a program that takes a string as input and returns the string was pandrome or not.</p>
+    <textarea id="inputPalindromeCheck" rows="4" cols="50"></textarea><br>
+    <button onclick="checkPalindrome27()">Check Palindrome</button>
+    <p id="palindromeOutput"></p>
+    <script>
+        function checkPalindrome27() {
+            const input = document.getElementById('inputPalindromeCheck').value;
+            const cleaned = input.replace(/[^a-zA-Z0-9]/g, '').toLowerCase();
+            const isPalindrome = cleaned === cleaned.split('').reverse().join('');
+            document.getElementById('palindromeOutput').innerText = isPalindrome ? 'The string is a palindrome.' : 'The string is not a palindrome.';
+        }
+    </script>
+
+    <!-- question 28 -->
+    <h1>Question 28</h1>
+    <p>Write a program that takes a string as input and returns the string containsAllAlphabets or not.</p>
+    <textarea id="inputContainsAllAlphabets" rows="4" cols="50"></textarea><br>
+    <button onclick="checkContainsAllAlphabets()">Check Contains All Alphabets</button>
+    <p id="containsAllAlphabetsOutput"></p>
+    <script>
+        function checkContainsAllAlphabets() {
+            const input = document.getElementById('inputContainsAllAlphabets').value;
+            const alphabet = 'abcdefghijklmnopqrstuvwxyz';
+            const containsAll = [...alphabet].every(letter => input.toLowerCase().includes(letter));
+            document.getElementById('containsAllAlphabetsOutput').innerText = containsAll ? 'The string contains all alphabets.' : 'The string does not contain all alphabets.';
+        }
+    </script>
+
+    <!-- question 29 -->
+    <h1>Question 29</h1>
+    <p>Write a program that takes a list of numbers as input and returns a new list with only the unique numbers (removing all duplicates).</p>
+    <textarea id="inputUniqueNumbers" rows="4" cols="50"></textarea><br>
+    <button onclick="getUniqueNumbers()">Get Unique Numbers</button>
+    <p id="uniqueNumbersOutput"></p>
+    <script>
+        function getUniqueNumbers() {
+            const input = document.getElementById('inputUniqueNumbers').value;
+            const numbers = input.split(',').map(num => num.trim()).filter(num => num !== '');
+            const uniqueNumbers = [...new Set(numbers)];
+            document.getElementById('uniqueNumbersOutput').innerText = `Unique numbers: ${uniqueNumbers.join(', ')}`;
+        }
+    </script>
+
+    <!-- question 30 -->
+    <h1>Question 30</h1>
+    <p>Write a program that takes a string as input and returns multiple time repeated letters.</p>
+    <textarea id="inputRepeatedLetters" rows="4" cols="50"></textarea><br>
+    <button onclick="findRepeatedLetters11()">Find Repeated Letters</button>
+    <p id="repeatedLettersOutput"></p>
+    <script>
+        function findRepeatedLetters11() {
+            const input = document.getElementById('inputRepeatedLetters').value;
+            const letterMap = {};
+            const repeatedLetters = [];
+
+            for (let char of input) {
+                if (/[a-zA-Z]/.test(char)) { // Check if it's a letter
+                    letterMap[char] = (letterMap[char] || 0) + 1;
+                    if (letterMap[char] === 2) { // Only add when it becomes repeated
+                        repeatedLetters.push(char);
+                    }
+                }
+            }
+
+            document.getElementById('repeatedLettersOutput').innerText = repeatedLetters.length > 0 ? `Repeated letters: ${repeatedLetters.join(', ')}` : "No repeated letters found.";
+        }
+    </script>
+
+    <h1>Question 31</h1>
+    <p>Write a program that takes a string as input and returns the string with all vowels replaced by asterisks.</p>
+    <textarea id="inputReplaceVowels" rows="4" cols="50"></textarea><br>
+    <button onclick="replaceVowels()">Replace Vowels</button>
+    <p id="replaceVowelsOutput"></p>
+    <script>
+        function replaceVowels() {
+            const input = document.getElementById('inputReplaceVowels').value;
+            const output = input.replace(/[aeiouAEIOU]/g, '*');
+            document.getElementById('replaceVowelsOutput').innerText = `Output: ${output}`;
+        }
+    </script>
+    <!--next move on DOM manipulation-->
+    <!-- DOM Manipulation Questions -->
+    <h2>DOM Manipulation Questions</h2>
+    <!-- question 1-->
+    <h1>Question 1</h1>
+    <p>Write a program that creates a button and changes its text when clicked.</p>
+    <button id="changeTextButton" onclick="changeButtonText()">Click me</button>
+    <p id="buttonTextOutput"></p>
+    <script>
+        function changeButtonText() {
+            const button = document.getElementById('changeTextButton');
+            button.innerText = button.innerText === 'Click me' ? 'Clicked!' : 'Click me';
+            document.getElementById('buttonTextOutput').innerText = `Button text changed to: ${button.innerText}`;
+        }
+    </script>
+
+    <!-- question 2-->
+    <h1>Question 2</h1>
+    <p>Write a program that creates a list of items and allows the user to add new items to the list.</p>
+    <input type="text" id="newItem" placeholder="Add new item">
+    <button onclick="addItem()">Add Item</button>
+    <ul id="itemList"></ul>
+    <script>
+            function addItem() {
+                const newItem = document.getElementById('newItem').value;
+                if (newItem) {
+                    const li = document.createElement('li');
+                    li.textContent = newItem;
+                    document.getElementById('itemList').appendChild(li);
+                    document.getElementById('newItem').value = '';
+                } else {
+                    alert("Please enter an item.");
+                }
+            }
+        </script>
+
+    <!-- question 3-->
+    <h1>Question 3</h1>
+    <p>Write a program that creates a div and changes its background color when clicked.</p>
+    <div id="colorDiv" style="width: 100px; height: 100px; background-color: black; border: 1px solid black;" onclick="changeDivColor()"></div>
+    <script>
+        function changeDivColor() {
+            const div = document.getElementById('colorDiv');
+            div.style.backgroundColor = div.style.backgroundColor === 'black' ? 'white' : 'black';
+        }
+    </script>
+
+    <!-- question 4-->
+    <h1>Question 4</h1>
+    <p>Write a program that creates a form and displays the input values when submitted.</p>
+    <form id="inputForm" onsubmit="displayInput(event)">
+        <input type="text" id="formInput" placeholder="Enter something">
+        <button type="submit">Submit</button>
+    </form>
+    <p id="formOutput"></p>
+    <script>
+        function displayInput(event) {
+            event.preventDefault();
+            const input = document.getElementById('formInput').value;
+            document.getElementById('formOutput').innerText = `You entered: ${input}`;
+        }
+    </script>
+
+    <!-- question 5-->
+    <h1>Question 5</h1>
+    <p>Write a program that creates a table and allows the user to add new rows to the table.</p>
+    <input type="text" id="tableRowInput" placeholder="Add new row">
+    <button onclick="addTableRow()">Add Row</button>
+    <table id="dataTable" border="1">
+        <thead>
+            <tr>
+                <th>Row</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+    <script>
+        function addTableRow() {
+            const input = document.getElementById('tableRowInput').value;
+            if (input) {
+                const table = document.getElementById('dataTable').getElementsByTagName('tbody')[0];
+                const newRow = table.insertRow();
+                const cell = newRow.insertCell(0);
+                cell.textContent = input;
+                document.getElementById('tableRowInput').value = '';
+            } else {
+                alert("Please enter a value.");
+            }
+        }
+    </script>
+
+    <!-- question 6-->
+    <h1>Question 6</h1>
+    <p>Write a program to change the background color of the page when a button is clicked.</p>
+    <button onclick="changePageColor()">Change Background Color</button>
+    <script>
+        function changePageColor() {
+            document.body.style.backgroundColor = document.body.style.backgroundColor === 'black' ? 'white' : 'black';
+            document.body.style.color = document.body.style.color === 'white' ? 'black' : 'white';
+        }
+    </script>
+
+    <!-- question 7-->
+    <h1>Question 7</h1> 
+    <p>Write a program that creates a dropdown menu and displays the selected value when changed.</p>
+    <select id="dropdown" onchange="displaySelectedValue()">
+        <option value="">Select an option</option>
+        <option value="Option 1">Option 1</option>
+        <option value="Option 2">Option 2</option>
+        <option value="Option 3">Option 3</option>
+    </select>
+    <p id="dropdownOutput"></p>
+    <script>
+        function displaySelectedValue() {
+            const selectedValue = document.getElementById('dropdown').value;
+            document.getElementById('dropdownOutput').innerText = `Selected value: ${selectedValue}`;
+        }
+    </script>
+
+    <!-- question 8-->
+    <h1>Question 8</h1>
+    <p>Write a program that creates a checkbox and displays whether it is checked or not.</p>
+    <input type="checkbox" id="checkbox" onclick="displayCheckboxStatus()">
+    <p id="checkboxOutput"></p>
+    <script>
+        function displayCheckboxStatus() {
+            const isChecked = document.getElementById('checkbox').checked;
+            document.getElementById('checkboxOutput').innerText = `Checkbox is ${isChecked ? 'checked' : 'unchecked'}.`;
+        }
+    </script>
+
+    <!-- question 9-->
+    <h1>Question 9</h1>
+    <p>Write a program that creates a radio button group and displays the selected value when changed.</p>
+    <input type="radio" class="radioOption" name="radioGroup" value="Option A" onclick="displayRadioValue()"> Option A<br>
+    <input type="radio" class="radioOption" name="radioGroup" value="Option B" onclick="displayRadioValue()"> Option B<br>
+    <input type="radio" class="radioOption" name="radioGroup" value="Option C" onclick="displayRadioValue()"> Option C<br>
+    <p id="radioOutput"></p>
+    <script>
+        function displayRadioValue() {
+            const selectedValue = document.querySelector('input[name="radioGroup"]:checked').value;
+            document.getElementById('radioOutput').innerText = `Selected value: ${selectedValue}`;
+        }
+    </script>
+
+    <!-- question 10-->
+    <h1>Question 10</h1>
+    <p>Write a program that creates a text input and displays the value when changed.</p>
+    <input type="text" id="textInput" oninput="displayTextValue()">
+    <p id="textOutput"></p>
+    <script>
+        function displayTextValue() {
+            const textValue = document.getElementById('textInput').value;
+            document.getElementById('textOutput').textContent = `Text input value: ${textValue}`;
+        }
+    </script>
+
+    <!-- question 11-->
+    <h1>Question 11</h1>
+    <p>Write a program that creates a button and displays an alert when clicked.</p>
+    <button onclick="showAlert()">Click Me</button>
+    <script>
+        function showAlert() {
+            alert("Button was clicked!");
+        }
+    </script>
+
+    <!-- question 12-->
+    <h1>Question 12</h1>
+    <p>Write a program that creates a list of numbers and allows the user to sort the list in ascending or descending order.</p>
+    <input type="text" id="sortInput" placeholder="Enter numbers separated by commas">
+    <button onclick="sortNumbers('asc')">Sort Ascending</button>
+    <button onclick="sortNumbers('desc')">Sort Descending</button>
+    <p id="sortOutput"></p>
+    <script>
+        function sortNumbers(order) {
+            const input = document.getElementById('sortInput').value;
+            const numbers = input.split(',').map(num => parseInt(num.trim())).filter(num => !isNaN(num));
+            if (numbers.length === 0) {
+                document.getElementById('sortOutput').innerText = "Please enter valid numbers.";
+                return;
+            }
+            numbers.sort((a, b) => order === 'asc' ? a - b : b - a);
+            document.getElementById('sortOutput').innerText = `Sorted (${order}): ${numbers.join(', ')}`;
+        }
+    </script>
+
+    <!-- question 13-->
+    <h1>Question 13</h1>
+    <p>Write a program that creates a input color field and changes the background color of the page when a color is selected.</p>
+    <input type="color" id="colorPicker1" value="#ff0000">
+    <input type="color" id="colorPicker2" value="#0000ff">
+    <button onclick="changeBackgroundGradient()">Set Gradient Background</button>
+    <script>
+        function changeBackgroundGradient() {
+            const color1 = document.getElementById('colorPicker1').value;
+            const color2 = document.getElementById('colorPicker2').value;
+            document.body.style.background = `linear-gradient(90deg, ${color1}, ${color2})`;
+        }
+    </script>
+
+    <!-- question 14-->
+    <h1>Question 14</h1>
+    <p>Write a program that creates a file input field and displays the name of the selected file.</p>
+    <input type="file" id="fileInput" onchange="displayFileName()">
+    <p id="fileOutput"></p>
+    <script>
+        function displayFileName() {
+            const fileInput = document.getElementById('fileInput');
+            const fileName = fileInput.files.length > 0 ? fileInput.files.name : 'No file selected';
+            document.getElementById('fileOutput').innerText = `Selected file: ${fileName}`;
+        }
+    </script>
+
+    <!-- question 15-->
+    <h1>Question 15</h1>
+    <p>Write a program that creates a button and displays the current date and time when clicked.</p>
+    <button onclick="displayDateTime()">Show Date and Time</button>
+    <p id="dateTimeOutput"></p>
+    <script>
+        function displayDateTime() {
+            const now = new Date();
+            document.getElementById('dateTimeOutput').innerText = `Current date and time: ${now}`;
+        }
+    </script>
+
+    <!-- question 16-->
+    <h1>Question 16</h1>
+    <p>Write a program that creates a button and displays a random number between 1 and 100 when clicked.</p>
+    <button onclick="displayRandomNumber()">Show Random Number</button>
+    <p id="randomNumberOutput"></p>
+    <script>
+        function displayRandomNumber() {
+            const randomNumber = Math.floor(Math.random() * 100) + 1;
+            document.getElementById('randomNumberOutput').innerText = `Random number: ${randomNumber}`;
+        }
+    </script>
+
+    <!-- question 17-->
+    <h1>Question 17</h1>
+    <p>Write a program that creates a button and displays a random color when clicked.</p>
+    <button onclick="displayRandomColor()">Show Random Color</button>
+    <p id="randomColorOutput"></p>
+    <script>
+        function displayRandomColor() {
+            const randomColor = '#' + Math.floor(Math.random()*16777215).toString(16);
+            document.getElementById('randomColorOutput').innerText = `Random color: ${randomColor}`;
+            document.body.style.backgroundColor = randomColor;
+        }
+    </script>
+
+    <!-- question 18-->
+    <h1>Question 18</h1>
+    <p>Write a program that creates a button and displays the current weather when clicked.</p>
+    <button onclick="displayWeather()">Show Weather</button>
+    <p id="weatherOutput"></p>
+    <script>
+        function displayWeather() {
+            // Simulating a weather API call
+            const weather = "Sunny, 25°C";
+            document.getElementById('weatherOutput').innerText = `Current weather: ${weather}`;
+        }
+    </script>
+
+    <!-- question 19-->
+    <h1>Question 19</h1>
+    <p>Write a program that creates a button and displays the timer when clicked.</p>
+    <button onclick="startTimer()">Start Timer</button>
+    <button onclick="stopTimer()">Stop Timer</button>
+    <p id="timerOutput"></p>
+    <script>
+        let timer;
+        function startTimer() {
+            let seconds = 0;
+            // clearInterval(timer);
+            timer = setInterval(() => {
+                seconds++;
+                document.getElementById('timerOutput').innerText = `Timer: ${seconds} seconds`;
+            }, 1000);
+        }
+        function stopTimer() {
+            clearInterval(timer);
+            document.getElementById('timerOutput').innerText = "Timer stopped.";
+        }
+    </script>
+
+    <!-- question 20-->
+    <h1>Question 20</h1>
+    <p>Write a program that creates a button and displays the quiz question when clicked.</p>
+    <button onclick="displayQuizQuestion()">Show Quiz Question</button>
+    <p id="quizQuestionOutput"></p>
+    <script>
+        function displayQuizQuestion() {
+            const quizQuestion = [{
+                question: "What is the capital of France?",
+                options: ["A) Berlin", "B) Madrid", "C) Paris", "D) Rome"],
+                answer: "C"
+            },
+            {
+                question: "What is the largest planet in our solar system?",
+                options: ["A) Earth", "B) Jupiter", "C) Saturn", "D) Mars"],
+                answer: "B"
+            },
+            {
+                question: "What is the chemical symbol for gold?",
+                options: ["A) Au", "B) Ag", "C) Pb", "D) Fe"],
+                answer: "A"
+            }];
+            document.getElementById('quizQuestionOutput').innerText = `Quiz Question: ${quizQuestion[0].question}\nOptions: ${quizQuestion[0].options.join(', ')}\nAnswer: ${quizQuestion[0].answer}`;
+        }
+    </script>
+
+    <!-- question 21-->
+    <h1>Question 21</h1>
+    <p>Write a program that creates a button and displays the list of cars when clicked.</p>
+   <button id="showCarsBtn">Show Cars</button>
+<div id="carsOutput"></div>
+
+<script>
+  document.getElementById("showCarsBtn").addEventListener("click", displayCars);
+
+  function displayCars() {
+    const cars = ["Toyota", "Honda", "Ford", "BMW", "Mercedes"];
+    const carsOutput = document.getElementById("carsOutput");
+
+    if (carsOutput) {
+      carsOutput.innerHTML = "<h3>Cars:</h3><ul>" + 
+cars.map(car => `<li>${car}</li>`).join("") + "</ul>";
+    }
+  }
+</script>
+
+ 
+
+</body>
+</html>
